@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
+use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 use App\Http\Controllers\Frontend\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
 
     Route::resource('gallery', AdminGalleryController::class);
     Route::post('gallery-reorder', [AdminGalleryController::class, 'reorder'])->name('gallery.reorder');
+
+    Route::get('reservations', [AdminReservationController::class, 'index'])->name('reservations.index');
+    Route::get('reservations/{reservation}', [AdminReservationController::class, 'show'])->name('reservations.show');
+    Route::patch('reservations/{reservation}/status', [AdminReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
 });

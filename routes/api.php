@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\GalleryController;
+use App\Http\Controllers\Api\V1\ReservationController;
 
 
 Route::get('/user', function (Request $request) {
@@ -38,4 +39,7 @@ Route::prefix('v1')->group(function () {
 
     Route::get('gallery', [GalleryController::class, 'index']);
     Route::get('gallery/{gallery}', [GalleryController::class, 'show']);
+
+    Route::get('reservations/availability', [ReservationController::class, 'availability']);
+Route::post('reservations', [ReservationController::class, 'store']);
 });
