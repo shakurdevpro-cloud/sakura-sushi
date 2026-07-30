@@ -56,6 +56,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Frontend URL
+    |--------------------------------------------------------------------------
+    |
+    | Cette URL pointe vers ton application frontend (SPA). Utilisée pour
+    | construire des liens (ex: reset password) redirigeant vers le
+    | frontend plutôt que vers l'API elle-même.
+    |
+    */
+
+    'frontend_url' => env('FRONTEND_URL', env('APP_URL')),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |
