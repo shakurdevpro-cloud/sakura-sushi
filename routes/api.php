@@ -21,4 +21,8 @@ Route::prefix('v1')->group(function () {
             Route::put('me', [AuthController::class, 'updateProfile']);
         });
     });
+
+    Route::middleware(['auth:sanctum', 'role:admin'])->get('admin/dashboard', function () {
+        return response()->json(['message' => 'Welcome admin']);
+    });
 });
