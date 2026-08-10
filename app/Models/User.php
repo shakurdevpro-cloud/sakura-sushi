@@ -40,12 +40,12 @@ class User extends Authenticatable
         return $this->hasOne(LoyaltyAccount::class);
     }
 
-    /* public function reviews(): HasMany
+    public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }
 
-    public function sendPasswordResetNotification($token): void
+    /* public function sendPasswordResetNotification($token): void
     {
         $this->notify(new PasswordResetNotification($token)); 
     } */

@@ -7,7 +7,9 @@ use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\GalleryController;
 use App\Http\Controllers\Api\V1\ReservationController;
-
+use App\Http\Controllers\Api\V1\ContactController;
+use App\Http\Controllers\Api\V1\NewsletterController;
+use App\Http\Controllers\Api\V1\ReviewController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -29,7 +31,7 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware(['auth:sanctum', 'role:admin'])->get('admin/dashboard', function () {
         return response()->json(['message' => 'Welcome admin']);
-    }); 
+    });
 
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('categories/{slug}', [CategoryController::class, 'show']);
@@ -41,5 +43,14 @@ Route::prefix('v1')->group(function () {
     Route::get('gallery/{gallery}', [GalleryController::class, 'show']);
 
     Route::get('reservations/availability', [ReservationController::class, 'availability']);
-Route::post('reservations', [ReservationController::class, 'store']);
+    Route::post('reservations', [ReservationController::class, 'store']);
+
+    Route::post('contact', [ContactController::class, 'store']);
+
+    Route::post('newsletter/subscribe', [NewsletterController::class, 'subscribe']);
+    Route::get('newsletter/confirm/{token}', [NewsletterController::class, 'confirm']);
+    Route::get('newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe']);
+
+    Route::get('reviews', [ReviewController::class, 'index']);
+    Route::post('reviews', [ReviewController::class, 'store']);
 });
