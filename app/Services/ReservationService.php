@@ -15,15 +15,21 @@ class ReservationService
     public const MAX_TABLES_PER_SLOT = 6;
 
     public const TIME_SLOTS = [
-        '12:00', '12:30', '13:00', '13:30',
-        '19:00', '19:30', '20:00', '20:30',
+        '12:00',
+        '12:30',
+        '13:00',
+        '13:30',
+        '19:00',
+        '19:30',
+        '20:00',
+        '20:30',
     ];
 
     public function create(array $data): Reservation
     {
         $this->checkAvailability($data['location'], $data['date'], $data['time'], $data['guests']);
 
-        $data['reference'] = generate_reference('RSV');
+        $data['reference'] = generate_reference('RSV', \App\Models\Reservation::class);
 
         $reservation = Reservation::create($data);
 

@@ -1,5 +1,5 @@
 <?php
-// tests/Feature/Auth/OrderPolicyTest.php
+
 namespace Tests\Feature\Auth;
 
 use App\Enums\OrderStatus;
@@ -17,13 +17,12 @@ class OrderPolicyTest extends TestCase
         $owner = User::factory()->create();
         $otherUser = User::factory()->create();
 
-        $order = Order::create([
+        $order = Order::factory()->create([
             'user_id' => $owner->id,
             'status' => OrderStatus::PENDING->value,
-            'total_amount' => 1500,
         ]);
 
         $this->assertTrue($owner->can('cancel', $order));
         $this->assertFalse($otherUser->can('cancel', $order));
     }
-}   
+}
